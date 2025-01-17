@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="watch_all_videos.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch All Videos</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="watch_all_videos.css">
+</head>
+<body ng-app="videoApp" ng-controller="WatchAllVideosController">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <nav>
+            <ul class="nav-links">
+                <li class="nav-item logo-item" style = "margin-bottom: 0.9rem;"><img src="images/one.png" /></li>
+                <li class="nav-item" ><img src="images/two.png" /></li>
+                <li class="nav-item"><img src="images/three.png" /></li>
+                <li class="nav-item"><img src="images/four.png" /></li>
+                <li class="nav-item"><img src="images/five.png" /></li>
+                <li class="nav-item"><img src="images/six.png" /></li>
+                <li class="nav-item"><img src="images/seven.png" /></li>
+                <li class="nav-item"><img src="images/eight.png" /></li>
+                <li class="nav-item"><img src="images/nine.png" /></li>
+                <li class="nav-item" style = "margin-top : 8rem;"><img src="images/ten.png" /></li>
+            </ul>
+        </nav>
+    </aside>
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Breadcrumb -->
+        <header class="top-bar">
+            <div style="color: #EE4961;">Help Center</div>
+            <nav>
+              <ul>
+                <li>
+                    <a href="index.html" style="display: flex; align-items: center; gap: 8px;">
+                        <img src="images/General-icon.png" alt="Videos Icon" class="nav-icon">
+                        <span style="color: rgb(171, 171, 171);">General</span>
+                    </a>
+                </li>
+                <li>
+                  <a href="videotab.html" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="images/videos.png" alt="Videos Icon" class="nav-icon">
+                    <span style="color: rgb(171, 171, 171);">Videos</span>
+                  </a>
+                </li>
+                <li>
+                    <a href="faq_page.html" style="display: flex; align-items: center; gap: 8px;">
+                        <img src="images/faq.png" alt="Admin Settings Icon" class="nav-icon">
+                        <span style="color: rgb(171, 171, 171);">FAQs</span>
+                    </a>
+                </li>
+                <li>
+                  <a href="admin-settings.html" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="images/faq.png" alt="Admin Settings Icon" class="nav-icon">
+                    <span style="color: rgb(171, 171, 171);">Admin Settings</span>
+                  </a>
+                </li>          
+              </ul>
+            </nav>
+            
+            <div class="user-icons">
+              <i class="icon notification"></i>
+              <i class="icon settings"></i>
+              <div class="profile">{{userName}}</div>
+            </div>
+        </header>
+        <div class="line-above"></div>
+<div class="breadcrumbs">
+    <span style="margin-right: 0.5rem;">
+        <img src="images/a.png" style="width: 24px; margin-bottom: 0.236rem; height: auto; vertical-align: middle;">
+    </span> 
+    <a href="#" style="text-decoration: underline; color: #515965; margin-right: 0.5rem;">KEBS Help Center</a>
+</div>
+
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search for videos..." />
+        </div>
+
+        <div class="tabs">
+            <button class="tab" ng-class="{active: activeCategory === 'general'}" ng-click="selectCategory('general')">General</button>
+            <button class="tab" ng-class="{active: activeCategory === 'Projects'}" ng-click="selectCategory('Projects')">Projects</button>
+            <button class="tab" ng-class="{active: activeCategory === 'ATS'}" ng-click="selectCategory('ATS')">ATS</button>
+            <button class="tab" ng-class="{active: activeCategory === 'Finance'}" ng-click="selectCategory('Finance')">Finance</button>
+            <button class="tab" ng-class="{active: activeCategory === 'Timesheet'}" ng-click="selectCategory('Timesheet')">Timesheet</button>
+            <button class="tab" ng-class="{active: activeCategory === 'CRM'}" ng-click="selectCategory('CRM')">CRM</button>
+            <button class="tab" ng-class="{active: activeCategory === 'HR'}" ng-click="selectCategory('HR')">HR</button>
+        </div>
+        
+        <!-- Video Sections -->
+        <div class="video-sections">
+            <div class="video-category" ng-repeat="category in displayedCategories">
+                <h2>{{category}}</h2>
+                <div class="video-slider">
+                    <button class="prev-arrow" ng-click="scrollVideos(-1, category)">&lt;</button>
+                    <div class="videos" data-category="{{category}}">
+                        <div class="video-card" ng-repeat="video in videoData[category] || []" ng-click="navigateToVideo(video)">
+                            <img ng-src="{{video.thumbnail}}" alt="{{video.title}}">
+                            <h3>{{video.title}}</h3>
+                            <p>{{video.description}}</p>
+                        </div>
+                    </div>
+                    <button class="next-arrow" ng-click="scrollVideos(1, category)">&gt;</button>
+                </div>
+            </div>
+        </div>
+        <div class="cta-box">
+            <!-- Single Image -->
+            <div class="cta-images">
+                <img src="images/person1.png" alt="Person">
+            </div>
+        
+            <!-- Text Content -->
+            <div class="cta-content">
+                
+                 <h3>Still have questions?</h3>
+                <p>Can’t find the answer you’re looking for? Please chat to our friendly team.</p>
+            </div>
+        
+            <!-- Get in Touch Button -->
+            <button class="cta-button" onclick="window.location.href='submit-ticket.html'">Get in touch</button>
+        </div>
+
+    <script src="watch_all_videos.js"></script>
+</body>
+</html>

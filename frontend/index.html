@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="helpCenterApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KEBS Help Center</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      animation: fadeIn 1.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border: 2px solid #EE4961;
+      box-shadow: 0 0 10px rgba(238, 73, 97, 0.5);
+      transition: all 0.3s ease;
+    }
+    button.btn:hover {
+      transform: scale(1.05);
+      background-color: #EE4961;
+      color: white;
+      transition: 0.3s ease;
+    }
+    .popular-search a:hover {
+      color: #EE4961;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+    .top-banner {
+      background: linear-gradient(135deg, #ffffff, #f8f9fa);
+      animation: gradientMove 5s infinite;
+    }
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    .header-image {
+      animation: slideIn 1.5s ease-out;
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .faq-question .toggle-icon img {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-question .toggle-icon img:active {
+      transform: scale(1.2);
+    }
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 4px solid #EE4961;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: auto;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <script src="app.js"></script>
+</head>
+<body ng-app="helpCenterApp">
+  <div class="loader"></div> 
+  <div ng-controller="MainController">
+    <header class="top-bar">
+      <div style="color: #EE4961;">Help Center</div>
+      <nav>
+        <ul>
+            <li ng-class="{active: activeTab === 'general'}" ng-click="setActiveTab('general')">
+                <img src="images/general.png" alt="General Icon" class="nav-icon">
+                <span ng-style="{'color': activeTab === 'general' ? '#EE4961' : 'rgb(171, 171, 171)'}">General</span>
+            </li>
+            <li ng-class="{active: activeTab === 'videos'}" ng-click="setActiveTab('videos')">
+                <a href="videotab.html" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="images/videos.png" alt="Videos Icon" class="nav-icon">
+                    <span ng-style="{'color': activeTab === 'videos' ? '#EE4961' : 'rgb(171, 171, 171)'}">Videos</span>
+                </a>
+            </li>
+            <li ng-class="{active: activeTab === 'faq'}" ng-click="setActiveTab('faq')">
+              <a href="faq_page.html" style="display: flex; align-items: center; gap: 8px;">
+                <img src="images/faq.png" alt="FAQ Icon" class="nav-icon">
+                <span ng-style="{'color': activeTab === 'faq' ? '#EE4961' : 'rgb(171, 171, 171)'}">FAQs</span>
+            </a>
+            </li>
+            <li ng-class="{active: activeTab === 'admin-settings'}" ng-click="setActiveTab('admin-settings')">
+                <a href="admin-settings.html" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="images/admin-settings.png" alt="Admin Settings Icon" class="nav-icon">
+                    <span ng-style="{'color': activeTab === 'admin-settings' ? '#EE4961' : 'rgb(171, 171, 171)'}">Admin Settings</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+      
+      <div class="user-icons">
+        <i class="icon notification"></i>
+        <i class="icon settings"></i>
+        <div class="profile">{{userName}}</div>
+      </div>
+    </header>
+    <aside class="sidebar">
+      <nav>
+          <ul class="nav-links">
+              <li class="nav-item logo-item" style="margin-top: 0rem;">
+                  <img src="images/kebs-logo.png" />
+              </li>
+              <li class="nav-item" style="margin-top: 4px;">
+                <img src="images/hrm-icon.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/handshake.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/dns.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/account_balance_wallet.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/key.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/family_history.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/confirmation_number.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/question-fill.png" />
+              </li> 
+              <li class="nav-item" style="margin-top: 150px;">
+                <img src="images/more-apps.png" />
+            </li>
+          </ul>
+      </nav>
+  </aside>
+    <main class="main-content">
+        <div class="top-banner" style="background-image: url('images/pattern.png');">
+        <div class="header-content">
+          <h3 style="font-weight:600;">Hey! 👋 How can we help you?</h3>
+          <p style="color:rgba(128, 128, 128, 0.891)">Access comprehensive support and resources to resolve your queries.</p>
+          <div class="search-bar">
+            <div class="search-wrapper" style="position: relative;">
+                <input style="font-size: 12px; font-weight: 400;" type="text" placeholder="      Search for Articles..." />
+                <img src="images/search.png" alt="Search" class="search-icon" />
+            </div>
+        </div>
+          <div class="popular-search" style="color:rgba(128, 128, 128, 0.891);">
+            Popular Search: <a href="#" style="margin-left: 25px;">Job</a> | <a href="#">Customization</a> | 
+            <a href="#">Dashboard</a> | <a href="#">Projects</a>
+          </div>
+        </div>
+        <img src="images/illustration.png" alt="Help Illustration" class="header-image">
+      </div>
+      <section class="about-kebs-container">
+        <div class="about-kebs">
+          <p style="margin-left:30px; line-height: 60px; margin-top:-1rem; font-size: 18px; font-weight:600;"> What is KEBS Help?</p>
+          <p style="text-align: left; margin-left:30px; line-height: 22px; font-size: 14px; color:rgba(128, 128, 128, 0.891)">KEBS Help is your go-to resource for all information, guidance, and support related to the KEBS product. 
+            Whether you’re new to KEBS or looking to deepen your understanding, this comprehensive help center 
+            offers everything you need to get the most out of your experience. Here, you can find detailed modules, 
+            video tutorials, FAQs, and articles to help you navigate and utilize KEBS effectively.
+          </p>
+        </div>
+      
+        <!-- Right Section: Quick Links -->
+        <div class="quick-links">
+          <p style="font-size: 18px; font-weight: 500;">Quick Links</p>
+          
+          <a href="#" class="latest-faqs">
+              <img src="images/flag.png" alt="FAQ Logo" class="link-logo">
+              <div class="link-text">
+                  <h4>Latest FAQs</h4>
+                  <p>Description</p>
+              </div>
+          </a>
+          
+          <a href="#" class="videos-link">
+              <img src="images/video.png" alt="Videos Logo" class="link-logo">
+              <div class="link-text">
+                  <h4>Video Tutorials</h4>
+                  <p>On Click, Scroll Down To Section</p>
+              </div>
+          </a>
+      </div>                 
+    </section>
+    <section class="faq">
+        <p style="font-size: 18px; font-weight:600;">Frequently Asked Questions</p>
+        <p style="font-size: 14px; font-weight:400; color:rgba(128, 128, 128, 0.891); margin-top: 12px;"> These are the most commonly asked questions about KEBS </p>
+
+        <div class="tabs">
+          <button ng-click="selectTab(tab)" ng-class="{'active': selectedTab === tab}" ng-repeat="tab in tabs">
+              {{ tab }}
+          </button>
+        </div>
+    
+        <div class="faq-list" ng-if="true">
+          <div class="faq-item" ng-repeat="faq in faqs[selectedTab]">
+             
+              <div class="faq-question" style="font-weight:500;" ng-click="toggleFaq($index)">
+                  {{ faq.question }}
+                  <span class="toggle-icon">
+                      <img class="plus-icon" ng-show="!faq.show" src="images/plus.png" alt="Expand" />
+                      <img class="minus-icon" ng-show="faq.show" src="images/minus.png" alt="Collapse" />
+                  </span>
+              </div>
+              <p class="faq-ans" ng-show="faq.show">{{ faq.answer }}</p> <!-- Answer will show or hide based on toggle -->
+          </div>
+      </div>
+        
+        <a href="#" class="browse-faqs">Browse all FAQ's</a>
+    </section>
+    
+    <section class="contact">
+      <div class="contact-header">
+        <img src="images/touch.png">
+        <div style="font-size:16px; font-weight: 500;">Having Questions?</div>
+        <p style="font-size: 14px;"> Can’t find the answer you’re looking for? Please chat to our friendly team.</p>
+        <button class="btn">Get in touch</button>
+      </div>
+    </section>
+
+    <div class="contact-info-container">
+      <div class="info-item">
+        <img src="images/helpline.png" alt="Support Icon" class="info-icon">
+        <div>
+          <p class="info-title" style="color:rgba(128, 128, 128, 0.891)">24x7 Helpline</p>
+          <a href="#">+080 5632 5566</a>
+        </div>
+      </div>
+      <div class="info-item">
+        <img src="images/support.png" alt="Support Icon" class="info-icon">
+        <div>
+          <p class="info-title" style="color:rgba(128, 128, 128, 0.891)">Support Email</p>
+          <a href="mailto:help@kebs.app">help@kebs.app</a>
+        </div>
+      </div>
+      <div class="info-item">
+        <img src="images/miss.png" alt="Missing Icon" class="info-icon">
+        <div>
+          <p class="info-title" style="color:rgba(128, 128, 128, 0.891)">Missing Something?</p>
+          <a href="#">Let Us Know</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  </div>
+</body>
+</html>
+

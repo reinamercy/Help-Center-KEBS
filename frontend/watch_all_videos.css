@@ -1,0 +1,453 @@
+/* General Styles */
+body {
+    font-family: 'DM Sans', sans-serif;
+    margin: 0;
+    display: flex;
+    background-color: white 
+    ;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Allow smooth vertical scrolling only if necessary */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 80px;
+    background-color: #1e2132;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    position: fixed; /* Sticks the sidebar */
+    top: 0;
+    left: 0;
+    padding: 9px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    z-index: 10;
+}
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 60px;
+    width: calc(100% - 140px);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 0 30px;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000;
+    gap:20px;
+    font-family:'DM Sans', sans-serif;
+  }  
+  .top-bar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+  }
+  .top-bar nav ul li {
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; 
+    gap: 0px; 
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .top-bar nav ul li.active {
+    color: #EE4961; /* Active tab color */
+    font-weight: bold; /* Optional: Highlight active tab */
+    text-decoration: underline; /* Optional: Add underline to active tab */
+}
+
+.breadcrumbs a {
+    text-decoration: none; /* Removes underline */
+}
+
+.sidebar {
+    width: 60px;
+    background-color: #1e2132;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    position: fixed; /* Sticks the sidebar */
+    top: 0;
+    left: 0;
+    padding: 9px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    z-index: 1100;
+}
+
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 0;
+}
+
+.sidebar li {
+    position: relative; /* For ripple positioning */
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    width: 98px;
+    background-color: transparent; 
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    overflow: hidden; /* Prevent ripple from spilling */
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar li:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Mild light color */
+    width: 100%; /* Extend hover effect to full width */
+    border-radius: 0; /* Make it rectangular */
+    transition: background-color 0.3s ease-in-out;
+}
+.ripple {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(12); /* Expand ripple smoothly */
+        opacity: 0; /* Fade out */
+    }
+}
+header {
+    display: flex;
+    justify-content: space-between; /* Space between left and right sections */ /* Align items to the left */
+    align-items: center;
+    
+    margin-bottom: 20px;
+}
+
+
+header h2 {
+    margin: 0; /* Remove extra margin */
+    font-size: 17.5px;
+    color: #FC5B67;
+    margin-left : -44.3rem;
+    grid-area: 1 / 1;
+}
+.line-above {
+    width: 100%;
+    height: 1px; /* Thickness of the line */
+    background-color: #ddd; /* Light gray color */
+    margin-bottom: 10px; 
+    /* Adjust the spacing between the line and breadcrumbs */
+}
+
+.divider {
+    width: calc(400% - 330px); /* 100% minus sidebar width */
+    margin: 0 auto; /* Center the line */
+    border: none;
+    margin: 32px auto 0;
+    margin-left:-4rem;
+    border-top: 1px solid #e6e6e6;
+}
+
+.main-content {
+    margin-left: 80px;
+    padding: 20px;
+    width: calc(100% - 80px);
+}
+
+
+
+.breadcrumbs {
+    margin-top: 67px; /* Move it up (reduce the value to move higher) */
+    margin-bottom: 40px; /* Maintain spacing below it */
+    font-size: 19px;
+    margin-left : 5rem ; 
+    color: #999;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Search Bar */
+.search-bar {
+    margin: 20px auto; /* Centers the search bar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin-left : -0.7rem ;
+    font-size: 14px;
+    outline: none;
+    max-width: 900px;
+    transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+    border-color: #FC5B67;
+    box-shadow: 0 0 5px rgba(252, 91, 103, 0.5);
+}
+
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: center; /* Center the tabs */
+    gap: 30px; /* Space between tabs */
+    margin-top: 40px; /* Adjust space below the search bar */
+    margin-bottom: 30px; /* Space above the video section */
+    width: 100%; /* Match the width of the search bar */
+    margin-left:-5.5rem; /* Center alignment */
+    margin-right: auto; /* Center alignment */
+}
+
+.tabs button {
+    background-color: #eeeff0;
+    border: none;
+    border-radius: 28px; /* Matches the search bar corners */
+    padding: 12px 20px; /* Bigger tabs */
+    font-size: 14px; /* Bigger font size for better visibility */
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+.tabs button:hover {
+    background-color: #eaeaea; /* Highlight color on hover */
+    color: rgb(0, 0, 0); /* White text on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.tabs button.active {
+    background-color: #FC5B67; /* Active tab color */
+    color: white;
+}
+
+
+/* Video Sections */
+/* Video Section Styling */
+.video-sections {
+    margin-top: 30px; /* Adjust spacing below the tabs */
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center; /* Center align the entire section */
+    gap: 40px; /* Space between categories */
+    overflow: hidden; 
+}
+
+.video-category {
+    width: 75%;
+
+     /* Adjusted width to fit within yellow lines */
+     /* Center heading */
+    margin: 0 auto; /* Center align the video section */
+}
+
+.video-category h2 {
+    font-size: 30px;
+    
+    font-weight: bold;
+    color: #333;
+    margin-left : 0.8rem ; 
+    margin-bottom: 2.1rem;
+}
+
+.video-slider {
+    position: relative; /* For arrows */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.videos {
+    
+    display: flex;
+    overflow: hidden; /* Prevent overflow */
+    gap: 20px; /* Maintain consistent spacing between cards */
+    transition: transform 0.3s ease-in-out; /* Smooth scrolling */
+}
+
+.video-card {
+    flex: 0 0 calc(100% - 760px); /* 4 full cards visible, 5th partially visible */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Mild shadow */
+    padding: 10px;
+    margin: 10px; /* Spacing between cards */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+}
+
+.video-card img {
+    width: 100%;
+    height: fit-content;
+    
+    margin-bottom: 10px;
+}
+
+.video-card h4 {
+    font-size: 14px; /* Match the description size */
+    color: #555555; /* Set color for the category headings */
+    margin: 5px 0; /* Reduce spacing */
+    font-weight: normal; /* Ensure it matches the description's font weight */
+}
+
+.video-card h3 {
+    font-size: 16px; /* Slightly larger for video title */
+    margin-bottom: 10px; /* Adjust spacing */
+    color: #333; /* Darker color for the title */
+}
+
+.video-card p {
+    font-size: 14px; /* Match the size of category text */
+    color: #555; /* Slightly darker grey for description */
+    margin-top: 15px; /* Adjust spacing */
+}
+
+.video-card:hover {
+    transform: scale(1.05); /* Slight zoom-in */
+    transition: transform 0.3s ease; /* Smooth animation */
+    overflow: hidden; /* Slight zoom effect */
+    transform-origin: center; /* Ensures zoom happens within the card's space */
+}
+
+/* Navigation Arrows */
+.prev-arrow,
+.next-arrow {
+    display: flex; /* Always visible */
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background-color: transparent; /* No background */
+    color: black; /* Visible arrow color */
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    transition: transform 0.2s ease; /* Slight hover effect */
+}
+
+.prev-arrow:hover,
+.next-arrow:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+}
+
+.prev-arrow {
+    color : #989ca2;
+    left: -59px; 
+    font-size: 37px;/* Adjust this to keep it near the video section */
+}
+
+.next-arrow {
+    color : #989ca2;
+    right: -54px;
+    font-size: 37px; /* Adjust this to keep it near the video section */
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ddd;
+}
+
+.footer p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.footer .get-in-touch {
+    text-decoration: none;
+    background-color: #FC5B67;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.footer .get-in-touch:hover {
+    background-color: #d94450;
+}
+.cta-box {
+    background-color: #FFEAEA; /* Pink background */
+    border-radius: 17px; /* Rounded corners */
+    padding: 30px 20px; /* Increase left and right padding */
+    text-align: center;
+    height : 200px;
+    margin: 60px auto 0; /* Push it lower with margin-top */
+    width: 100%; /* Full width of the container */
+    max-width: 900px; /* Stretching length (adjust as needed) */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    margin-left: 10rem;
+}
+
+
+/* Images Styling */
+/* Image Styling */
+.cta-images img {
+    width:117px; /* Adjust the size of the single image */
+    height: 60px;
+    
+    margin-bottom: -5px; /* Space between image and text */
+}
+
+
+/* Text Styling */
+.cta-content h3 {
+    font-size: 20px;
+    color: #333;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.cta-content p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Button Styling */
+.cta-button {
+    background-color: #FF5B67;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: #E94B55;
+}

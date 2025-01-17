@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="adminApp" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center</title>
+  <link rel="stylesheet" href="faq.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="faq.js"> </script>
+</head>
+<body ng-controller="AdminController">
+  <h1 onclick="redirectTo('index.html')" style="cursor: pointer; color: inherit;">Help Center</h1>
+  <div class="layout">
+    <header class="top-bar">
+      <div style="color: #EE4961;">Help Center</div>
+      <nav>
+        <ul>
+            <li ng-class="{active: activeTab === 'general'}" ng-click="setActiveTab('general')">
+              <a href="index.html" style="display: flex; align-items: center; gap: 8px;">
+                <img src="images/General-icon.png" alt="Videos Icon" class="nav-icon">
+                <span ng-style="{'color': activeTab === 'videos' ? '#EE4961' : 'rgb(171, 171, 171)'}">General</span>
+            </a>
+            </li>
+            <li ng-class="{active: activeTab === 'videos'}" ng-click="setActiveTab('videos')">
+                <a href="videotab.html" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="images/videos.png" alt="Videos Icon" class="nav-icon">
+                    <span ng-style="{'color': activeTab === 'videos' ? '#EE4961' : 'rgb(171, 171, 171)'}">Videos</span>
+                </a>
+            </li>
+            <li ng-class="{active: activeTab === 'faq'}" ng-click="setActiveTab('faq')">
+              <a href="faq_page.html" style="display: flex; align-items: center; gap: 8px;">
+                <img src="images/faq.png" alt="FAQ Icon" class="nav-icon">
+                <span ng-style="{'color': activeTab === 'faq' ? '#EE4961' : 'rgb(171, 171, 171)'}">FAQs</span>
+            </a>
+            </li>
+            <li ng-class="{active: activeTab === 'admin-settings'}" ng-click="setActiveTab('admin-settings')">
+                <a href="admin-settings.html" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="images/admin-settings.png" alt="Admin Settings Icon" class="nav-icon">
+                    <span ng-style="{'color': activeTab === 'admin-settings' ? '#EE4961' : 'rgb(171, 171, 171)'}">Admin Settings</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+     
+      <div class="user-icons">
+        <i class="icon notification"></i>
+        <i class="icon settings"></i>
+        <div class="profile">{{userName}}</div>
+      </div>
+    </header>
+    <aside class="sidebar">
+      <nav>
+          <ul class="nav-links">
+              <li class="nav-item logo-item" style="margin-top: 0rem;">
+                  <img src="images/kebs-logo.png" />
+              </li>
+              <li class="nav-item" style="margin-top: 4px;">
+                <img src="images/hrm-icon.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/handshake.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/dns.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/account_balance_wallet.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/key.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/family_history.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/confirmation_number.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/question-fill.png" />
+              </li>
+              <li class="nav-item" style="margin-top: 150px;">
+                <img src="images/more-apps.png" />
+            </li>
+          </ul>
+      </nav>
+    </aside>
+ 
+    <!-- Header -->
+    <div class="header-wrapper">
+      <header class="header">
+        <div class="header-title">Help Center</div>
+        <div class="user-info">
+          <img src="images/user-avatar.png" alt="User Avatar" class="user-avatar" />
+          <span>John Doe</span>
+        </div>
+      </header>
+    </div>
+ 
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="admin-title">
+        <p>Admin settings</p>
+      </div>
+     
+      <div class="action-bar">
+        <button class="add-faq-button" ng-click="openDialog()">Add FAQ</button>
+        <button class="notification-button" ng-click="openNotificationDialog()">
+          <img src="images/notification.png" alt="Notifications" class="notification-icon" />
+        </button>
+      </div>
+      <div class="layout-container">
+      <div class="tabs">
+        <button class="tab active">FAQ</button>
+        <button class="tab" onclick="redirectTo('videos.html')">Videos</button>
+      </div>
+      <script>
+        function redirectTo(page) {
+          window.location.href = page;
+        }
+      </script>
+      <!-- Search Bar -->
+      <!-- Search Bar Section -->
+<!-- Search Section -->
+<!-- Action Buttons Section -->
+ 
+<!-- Search Section -->
+<div class="search-bar-container">
+  <div class="search-bar">
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search For FAQ's..." />
+      <select class="search-dropdown" ng-model="selectedApp" ng-change="onModuleChange(selectedApp)">
+        <option value="" disabled>Select Module</option>
+        <option value="">All Modules</option> <!-- Add option for showing all -->
+        <option ng-repeat="module in modules" value="{{module}}">{{module}}</option>
+    </select>
+   
+   
+    </div>
+  </div>
+</div>
+ 
+ 
+      <div class="notification-dialog-overlay" ng-show="showNotificationDialog">
+        <div class="notification-dialog-box">
+          <div class="notification-dialog-header">
+            <h3>Notifications</h3>
+            <button class="close-button" ng-click="closeNotificationDialog()">×</button>
+          </div>
+          <div class="notification-tabs">
+            <button ng-class="{active: activeTab === 'request'}" ng-click="changeTab('request')">Request</button>
+            <button ng-class="{active: activeTab === 'issues'}" ng-click="changeTab('issues')">Issues</button>
+            <button ng-class="{active: activeTab === 'general'}" ng-click="changeTab('general')">General</button>
+          </div>
+          <div class="notification-content">
+            <div ng-show="activeTab === 'request'">
+              <!-- Content for the Request Tab -->
+              <p>No requests available.</p>
+            </div>
+            <div ng-show="activeTab === 'issues'">
+              <!-- Content for the Issues Tab -->
+              <p>No issues available.</p>
+            </div>
+            <div ng-show="activeTab === 'general'">
+              <!-- Content for the General Tab -->
+              <p>No general notifications available.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="faq-item" ng-repeat="faq in paginatedFaqs">
+        <div class="faq-container">
+          <h3 ng-click="toggleFaq($index)" class="faq-question" >
+            {{ faq.question }}
+            <span class="toggle-icon">
+              <img ng-src="{{ faq.show ? 'images/minus.png' : 'images/plus.png' }}" alt="{{ faq.show ? 'Minus' : 'Plus' }}" class="toggle-image" />
+            </span>
+          </h3>
+          <div class="icons">
+            <!-- Pass FAQ object instead of index -->
+            <button class="icon-button" ng-click="openEditDialog(faq)">
+              <img src="images/edit.png" alt="Edit" class="icon-image" />
+            </button>
+            <button class="icon-button" ng-click="openDeleteDialog(faq)">
+              <img src="images/delete.png" alt="Delete" class="icon-image" />
+            </button>
+           
+          </div>
+        </div>
+        <p class="faq-ans" ng-class="{ 'show': faq.show }">{{ faq.answer }}</p>
+      </div>
+     
+ 
+      <!-- Delete Dialog -->
+      <div class="dialog-overlay" ng-show="showDeleteDialog">
+        <div class="delete-dialog">
+            <div class="success-dialog-header">
+                <img src="images/success.png" alt="Success Icon" class="success-icon" />
+            </div>
+            <div class="dialog-header">
+                <p style="font-weight: 600; margin: 10px;">Are you sure you want to delete?</p>
+            </div>
+            <div class="dialog-footer">
+                <button class="delete-button" ng-click="confirmDelete()">Delete</button>
+                <button class="cancel-button" ng-click="cancelDelete()">Cancel</button>
+            </div>
+        </div>
+    </div>
+   
+   
+ 
+      <!-- Add/Edit FAQ Dialog -->
+      <div class="dialog-overlay" ng-show="showDialog || showEditDialog">
+        <div class="dialog-box">
+          <div class="dialog-header">
+            <h3>{{ showEditDialog ? "Edit FAQ" : "Add FAQ" }}</h3>
+            <button class="close-button" ng-click="closeDialog()">&times;</button>
+          </div>
+          <div class="dialog-body">
+            <label for="module-select">Module Selection</label>
+            <select
+              id="module-select"
+              class="module-dropdown"
+              ng-model="newFaq.module"
+              ng-options="module for module in modules">
+            </select>
+         
+            <label for="faq-question">Question</label>
+            <input
+              type="text"
+              id="faq-question"
+              placeholder="Post your question here..."
+              ng-model="newFaq.question"
+            />
+         
+            <label for="faq-description">Description</label>
+            <div class="description-container">
+              <div id="editor-toolbar">
+                <!-- Toolbar Buttons -->
+                <button type="button" class="toolbar-button" onclick="document.execCommand('bold', false, '')">B</button>
+                <button type="button" class="toolbar-button" onclick="document.execCommand('italic', false, '')">I</button>
+                <button type="button" class="toolbar-button" onclick="document.execCommand('underline', false, '')">U</button>
+                <button type="button" class="toolbar-button" onclick="document.execCommand('strikeThrough', false, '')">S</button>
+                <button type="button" class="toolbar-button" onclick="document.execCommand('insertOrderedList', false, '')">1.</button>
+                <button type="button" class="toolbar-button" onclick="document.execCommand('insertUnorderedList', false, '')">&bull;</button>
+                <button type="button" class="toolbar-button" onclick="document.execCommand('createLink', false, prompt('Enter URL'))">&#128279;</button>
+              </div>
+              <div
+                id="editor-container"
+                contenteditable="true"
+                class="editor-content"
+                ng-blur="syncDescription()"
+                ng-bind="newFaq.answer">
+              </div>
+            </div>
+          </div>
+         
+          <div class="dialog-footer">
+            <button class="cancel-button" ng-click="closeDialog()">Cancel</button>
+            <button class="post-button" ng-click="showEditDialog ? saveEditFaq() : addFaq()">
+              {{ showEditDialog ? "Save" : "Post" }}
+            </button>
+          </div>
+        </div>
+      </div>
+     
+      <!-- Success Dialog -->
+      <div class="success-dialog-overlay" ng-show="showSuccessDialog">
+        <div class="success-dialog-box">
+          <div class="success-dialog-header">
+            <img src="images/success.png" alt="Success Icon" class="success-icon" />
+          </div>
+          <div class="success-dialog-body">
+            <h3>FAQ posted successfully</h3>
+            <p>
+              This question has been published. Team members will be able to edit this
+              post and republish changes.
+            </p>
+          </div>
+          <div class="success-dialog-footer">
+            <button class="ok-button" ng-click="closeSuccessDialog()">OK</button>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Pagination -->
+      <div class="pagination">
+        <button
+          ng-repeat="button in pagination"
+          ng-click="goToPage(button.action === 'page' ? button.label - 1 : button.action)"
+          ng-class="{'active': button.active}"
+          ng-disabled="button.disabled">
+          {{button.label}}
+        </button>
+      </div>
+ 
+<section class="contact">
+<div class="contact-header">
+  <img src="images/touch.png">
+  <div style="font-size:16px; font-weight: 500;">Having Questions?</div>
+  <p style="font-size: 14px;"> Can’t find the answer you’re looking for? Please chat to our friendly team.</p>
+  <button class="btn">Get in touch</button>
+</div>
+</section>
+    </div>
+  </div>
+  <script src="faq.js"></script>
+</body>
+</html>

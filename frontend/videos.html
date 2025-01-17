@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center - Videos</title>
+  <link rel="stylesheet" href="videos.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="videos.js"></script>
+</head>
+<body ng-controller="VideoController">
+  <header class="top-bar">
+    <div style="color: #EE4961;">Help Center</div>
+    <nav>
+      <ul>
+        <li>
+          <a href="index.html" style="display: flex; align-items: center; gap: 8px;">
+            <img src="images/videos.png" alt="Videos Icon" class="nav-icon">
+            <span style="color: rgb(171, 171, 171);">General</span>
+        </a>
+        </li>
+        <li>
+          <a href="videotab.html" style="display: flex; align-items: center; gap: 8px;">
+            <img src="images/videos.png" alt="Videos Icon" class="nav-icon">
+            <span style="color: rgb(171, 171, 171);">Videos</span>
+          </a>
+        </li>
+        <li>
+          <a href="faq-page.html" style="display: flex; align-items: center; gap: 8px;">
+            <img src="images/faq.png" alt="Admin Settings Icon" class="nav-icon">
+            <span style="color: rgb(171, 171, 171);">FAQ</span>
+          </a>
+        </li>
+        <li>
+          <a href="admin-settings.html" style="display: flex; align-items: center; gap: 8px;">
+            <img src="images/faq.png" alt="Admin Settings Icon" class="nav-icon">
+            <span style="color: rgb(171, 171, 171);">Admin Settings</span>
+          </a>
+        </li>          
+      </ul>
+    </nav>
+    
+    <div class="user-icons">
+      <i class="icon notification"></i>
+      <i class="icon settings"></i>
+      <div class="profile">{{userName}}</div>
+    </div>
+</header>
+  <div class="layout">
+    <aside class="sidebar">
+      <nav>
+          <ul class="nav-links">
+              <li class="nav-item logo-item" style="margin-top: 0rem;">
+                  <img src="images/kebs-logo.png" />
+              </li>
+              <li class="nav-item" style="margin-top: 4px;">
+                <img src="images/hrm-icon.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/handshake.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/dns.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/account_balance_wallet.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/key.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/family_history.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/confirmation_number.png" />
+              </li>
+              <li class="nav-item" style="margin-top: -18px;">
+                  <img src="images/question-fill.png" />
+              </li> 
+              <li class="nav-item" style="margin-top: 150px;">
+                <img src="images/more-apps.png" />
+            </li>
+          </ul>
+      </nav>
+  </aside>
+
+    <!-- Main Content -->
+    <div class="header-wrapper">
+      <!-- Header Section -->
+      <header class="header">
+        <div class="header-title">Help Center</div>
+        <div class="user-info">
+          <img src="images/user-avatar.png" alt="User Avatar" class="user-avatar" />
+          <span>John Doe</span>
+        </div>
+      </header>
+    </div>
+
+    <div class="main-content">
+      <!-- Admin Settings Title -->
+      <div class="admin-title">
+        <p>Admin settings</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab" id="faq-tab" onclick="redirectTo('admin-settings.html')">FAQ</button>
+        <button class="tab active" id="videos-tab">Videos</button>
+      </div>
+      
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search For Videos..." />
+          <select class="search-dropdown" ng-model="selectedModule" ng-change="onModuleChange(selectedModule)">
+            <option value="" disabled>Select Module</option>
+            <option ng-repeat="module in moduleList" value="{{module}}">
+              {{module}}
+            </option>
+          </select>
+        </div>
+        <button class="add-faq-button" ng-click="openAddVideoDialog()">Add Videos</button>
+        <button class="notification-button" ng-click="openNotificationDialog()">
+          <img src="images/notification.png" alt="Notifications" class="notification-icon" />
+        </button>
+      </div>
+      <div class="notification-dialog-overlay" ng-show="showNotificationDialog">
+        <div class="notification-dialog-box">
+          <div class="notification-dialog-header">
+            <h3>Notifications</h3>
+            <button class="close-button" ng-click="closeNotificationDialog()">×</button>
+          </div>
+          <div class="notification-tabs">
+            <button ng-class="{active: activeTab === 'request'}" ng-click="changeTab('request')">Request</button>
+            <button ng-class="{active: activeTab === 'issues'}" ng-click="changeTab('issues')">Issues</button>
+            <button ng-class="{active: activeTab === 'general'}" ng-click="changeTab('general')">General</button>
+          </div>
+          <div class="notification-content">
+            <div ng-show="activeTab === 'request'">
+              <!-- Content for the Request Tab -->
+              <p>No requests available.</p>
+            </div>
+            <div ng-show="activeTab === 'issues'">
+              <!-- Content for the Issues Tab -->
+              <p>No issues available.</p>
+            </div>
+            <div ng-show="activeTab === 'general'">
+              <!-- Content for the General Tab -->
+              <p>No general notifications available.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dialog Overlay -->
+<div class="dialog-overlay" ng-show="showAddVideoDialog">
+  <div class="add-videos-dialog" ng-show="showAddVideoDialog">
+    <!-- Dialog Header -->
+    <div class="dialog-header">
+      <h3>Add Videos</h3>
+      <button class="close-button" ng-click="closeAddVideoDialog()">×</button>
+    </div>
+
+    <!-- Dialog Body -->
+    <div class="dialog-body">
+
+      <!-- Module Selection -->
+      <div class="form-group">
+        <label style="font-size: 13px; margin-left: 30rem; font-weight: 500; margin-bottom: -1.7rem;" for="module-selection">
+          Module Selection
+        </label>
+        <select class="dropdown" id="module-selection" ng-model="newVideo.module">
+          <option value="Projects">Projects</option>
+          <option value="ATS">ATS</option>
+          <option value="Timesheet">Timesheets</option>
+          <option value="Finance">Finance</option>
+          <option value="CRM">CRM</option>
+          <option value="HR">HR</option>
+        </select>
+      </div>
+
+      <!-- Question -->
+      <div class="form-group">
+        <label for="question">Question</label>
+        <input
+          type="text"
+          id="question"
+          placeholder="Post your question here..."
+          ng-model="newVideo.question"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="tags">Tags</label>
+        <input
+          type="text"
+          id="tags"
+          placeholder="Enter tags separated by commas..."
+          ng-model="newVideo.tags"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Video Description</label>
+        <div class="description-container">
+          <div id="editor-toolbar">
+            <button type="button" class="toolbar-button" onclick="document.execCommand('bold', false, '')">B</button>
+            <button type="button" class="toolbar-button" onclick="document.execCommand('italic', false, '')">I</button>
+            <button type="button" class="toolbar-button" onclick="document.execCommand('underline', false, '')">U</button>
+            <button type="button" class="toolbar-button" onclick="document.execCommand('strikeThrough', false, '')">S</button>
+            <button type="button" class="toolbar-button" onclick="document.execCommand('insertOrderedList', false, '')">1.</button>
+            <button type="button" class="toolbar-button" onclick="document.execCommand('insertUnorderedList', false, '')">&bull;</button>
+            <button type="button" class="toolbar-button" onclick="document.execCommand('createLink', false, prompt('Enter URL'))">&#128279;</button>
+          </div>
+          <div
+            id="editor-container"
+            contenteditable="true"
+            placeholder="Enter video description here..."
+            class="editor-content"
+            style="font-size: 12px; color:rgb(0, 0, 0)"
+            ng-model="newVideo.description">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="video-thumbnail">Thumbnail & Video</label>
+        <div class="upload-container">
+          <!-- Thumbnail -->
+          <div class="upload-area">
+            <p>Drag And Drop File Here Or <a href="#">Choose File</a></p>
+            <input
+              type="file"
+              id="thumbnail"
+              accept="image/*"
+              ng-model="newVideo.thumbnailFile"
+              ng-change="handleFileUpload(newVideo.thumbnailFile, 'thumbnail')"
+            />
+          </div>
+      
+          <!-- Attach Video -->
+          <div class="upload-area">
+            <p>Drag And Drop File Here Or <a href="#">Choose File</a></p>
+            <input
+              type="file"
+              id="attach-video"
+              accept="video/*"
+              ng-model="newVideo.videoFile"
+              ng-change="handleFileUpload(newVideo.videoFile, 'video')"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog Footer -->
+    <div class="dialog-footer">
+      <button class="cancel-button" ng-click="closeAddVideoDialog()">Cancel</button>
+      <button class="post-button" ng-click="postVideo()">Post</button>
+    </div>
+  </div>
+</div>
+
+
+      <!-- Success Dialog -->
+      <div class="success-dialog-overlay" ng-show="showSuccessDialog">
+        <div class="success-dialog-box">
+          <div class="success-dialog-header">
+            <img src="images/success.png" alt="Success Icon" class="success-icon" />
+          </div>
+          <div class="success-dialog-body">
+            <h3>Video posted successfully</h3>
+            <p>
+              This video has been published. Team members will be able to edit this post
+              and republish changes.
+            </p>
+          </div>
+          <div class="success-dialog-footer">
+            <button class="ok-button" ng-click="closeSuccessDialog()">OK</button>
+          </div>
+        </div>
+      </div>
+      
+
+      <section class="videos">
+        <div class="video-grid">
+          <!-- Render the videos dynamically -->
+          <div 
+            class="video-card" 
+            ng-repeat="video in paginatedVideos" 
+            ng-mouseenter="hoverVideoIndex = $index" 
+            ng-mouseleave="hoverVideoIndex = null">
+            
+            <!-- Video Thumbnail -->
+            <img ng-src="{{video.thumbnail}}" alt="Video Thumbnail" class="video-thumbnail">
+            
+            <button 
+              class="icon-button delete-video-button" 
+              ng-click="openDeleteDialog($index)" 
+              ng-show="hoverVideoIndex === $index">
+              <img src="images/delete.png" alt="Delete" class="icon-image">
+            </button>
+
+            <!-- Video Content -->
+            <div class="video-content">
+              <div class="video-tags">
+                <span ng-repeat="tag in video.tags">{{tag}}</span>
+              </div>
+              <h4>{{video.title}}</h4>
+              <span>{{video.description}}</span>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Delete Confirmation Dialog -->
+        <div class="dialog-overlay" ng-show="showDeleteDialog" ng-click="cancelDelete()">
+          <div class="delete-dialog" ng-click="$event.stopPropagation()">        
+            <div class="dialog-header">
+              <p style="font-weight: 600; margin: 10px;">Are you sure you want to delete this video?</p>
+            </div>
+            <div class="dialog-footer">
+              <button class="delete-button" ng-click="confirmDelete()">Delete</button>
+              <button class="cancel-button" ng-click="cancelDelete()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      
+        <div class="pagination">
+          <button
+            ng-repeat="button in pagination"
+            ng-click="goToPage(button.action === 'page' ? button.label - 1 : button.action)"
+            ng-class="{'active': button.active}"
+            ng-disabled="button.disabled">
+            {{button.label}}
+          </button>
+        </div>
+        
+      </section> 
+      <section class="contact">
+        <div class="contact-header">
+          <img src="images/touch.png">
+          <div style="font-size:16px; font-weight: 500;">Having Questions?</div>
+          <p style="font-size: 14px;"> Can’t find the answer you’re looking for? Please chat to our friendly team.</p>
+          <button class="btn">Get in touch</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    function redirectTo(page) {
+      window.location.href = page; 
+    }
+  </script>
+  <script src="videos.js"></script>
+</body>
+</html>

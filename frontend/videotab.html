@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Tutorials</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="videotab.css">
+</head>
+<body ng-app="videoApp" ng-controller="VideoController">
+     <aside class="sidebar">
+        <nav>
+            <ul class="nav-links">
+                <li class="nav-item logo-item" style = "margin-bottom: 1.89rem;"><img src="images/one.png" /></li>
+                <li class="nav-item" ><img src="images/two.png" /></li>
+                <li class="nav-item"><img src="images/three.png" /></li>
+                <li class="nav-item"><img src="images/four.png" /></li>
+                <li class="nav-item"><img src="images/five.png" /></li>
+                <li class="nav-item"><img src="images/six.png" /></li>
+                <li class="nav-item"><img src="images/seven.png" /></li>
+                <li class="nav-item"><img src="images/eight.png" /></li>
+                <li class="nav-item"><img src="images/nine.png" /></li>
+                <li class="nav-item" style = "margin-top : 8rem;"><img src="images/ten.png" /></li>
+            </ul>
+        </nav>
+    </aside>
+    <header class="top-bar">
+        <div style="color: #EE4961;">Help Center</div>
+        <nav>
+          <ul>
+            <li ng-class="{active: activeTab === 'general'}" ng-click="setActiveTab('general')">
+              <a href="index.html" style="display: flex; align-items: center; gap: 8px;">
+                <img src="images/general.png" alt="General Icon" class="nav-icon">
+                <span ng-style="{'color': activeTab === 'general' ? '#EE4961' : 'rgb(171, 171, 171)'}">General</span>
+              </a>
+            </li>
+            <li ng-class="{active: activeTab === 'videos'}" ng-click="setActiveTab('videos')">
+                <a href="videotab.html" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="images/videos.png" alt="Videos Icon" class="nav-icon">
+                    <span ng-style="{'color': activeTab === 'videos' ? '#EE4961' : 'rgb(171, 171, 171)'}">Videos</span>
+                </a>
+            </li>
+            <li ng-class="{active: activeTab === 'faq'}" ng-click="setActiveTab('faq')">
+              <a href="faq_page.html" style="display: flex; align-items: center; gap: 8px;">
+                <img src="images/faq.png" alt="FAQ Icon" class="nav-icon">
+                <span ng-style="{'color': activeTab === 'faq' ? '#EE4961' : 'rgb(171, 171, 171)'}">FAQs</span>
+              </a>
+            </li>
+            <li ng-class="{active: activeTab === 'admin-settings'}" ng-click="setActiveTab('admin-settings')">
+                <a href="admin-settings.html" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="images/admin-settings.png" alt="Admin Settings Icon" class="nav-icon">
+                    <span ng-style="{'color': activeTab === 'admin-settings' ? '#EE4961' : 'rgb(171, 171, 171)'}">Admin Settings</span>
+                </a>
+            </li>
+          </ul>
+        </nav> 
+        <div class="user-icons">
+          <i class="icon notification"></i>
+          <i class="icon settings"></i>
+          <div class="profile">{{userName}}</div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="video-section">
+            <h2>Video Tutorials</h2>
+            <p>Engaging video tutorials that explain features and products in detail.</p>
+            <a href="#" class="watch-all" ng-click="watchAllVideos($event)">Watch all videos →</a>
+            <div class="video-sections"></div>
+            <div class="video-grid">
+                <div class="video-card" ng-repeat="video in videoCards" ng-click="navigateToVideoPage(video.title, video.description, video.thumbnail, video.category)">
+                    <img ng-src="images/{{video.thumbnail}}" alt="{{video.title}}">
+                    <h3 style="color: grey; font-size: 14px; margin-bottom: 5px;">{{video.category}}</h3>
+                    <p style="color: black; font-size: 16px; margin-bottom: 15px;">{{video.title}}</p>
+                    <p style="color: grey; font-size: 14px; margin: 1.8px;">{{video.description}}</p>
+                </div>                
+            </div>    
+    </div>
+    <script src="videotab.js"></script>
+</body>
+</html>
